@@ -13,16 +13,20 @@
       "default": 1,
       "description": "Number of replicas for the deployment."
     },
-    "port": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 65535,
-      "default": 4000,
-      "description": "TCP port where the application listens and which is exposed by the service."
-    },
     "envConfig": {
       "type": "object",
-      "default": {},
+      "default": {
+        "PORT": 4000
+      },
+      "properties": {
+        "PORT": {
+          "type": "integer",
+          "minimum": 1025,
+          "maximum": 65535,
+          "default": 4000,
+          "description": "TCP port where the application listens and which is exposed by the service."
+        }
+      },
       "additionalProperties": {
         "type": "string"
       },

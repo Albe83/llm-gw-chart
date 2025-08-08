@@ -28,9 +28,6 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}@{{ .Values.image.digest }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: PORT
-              value: "{{ .Values.port }}"
           {{- if or .Values.envConfig .Values.envSecret }}
           envFrom:
             {{- if .Values.envConfig }}
@@ -44,5 +41,5 @@ spec:
           {{- end }}
           ports:
             - name: http
-              containerPort: {{ .Values.port }}
+              containerPort: {{ .Values.envConfig.PORT }}
               protocol: TCP

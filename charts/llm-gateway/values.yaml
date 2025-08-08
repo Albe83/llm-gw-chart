@@ -1,8 +1,7 @@
 namespaceOverride: ""
 replicaCount: 1
-port: 4000
-
-envConfig: {}
+envConfig:
+  PORT: 4000
 envSecret: {}
 
 image:
