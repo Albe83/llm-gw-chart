@@ -1,4 +1,5 @@
 namespaceOverride: ""
+# Number of replicas for the deployment. Set to 0 to scale to zero pods.
 replicaCount: 1
 envConfig:
   PORT: 4000
