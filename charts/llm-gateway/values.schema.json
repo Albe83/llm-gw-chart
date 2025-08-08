@@ -13,6 +13,13 @@
       "default": 1,
       "description": "Number of replicas for the deployment."
     },
+    "port": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 65535,
+      "default": 4000,
+      "description": "TCP port where the application listens and which is exposed by the service."
+    },
     "envConfig": {
       "type": "object",
       "default": {},
@@ -64,6 +71,23 @@
         "digest",
         "pullPolicy"
       ]
+    },
+    "service": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "ClusterIP",
+            "NodePort",
+            "LoadBalancer",
+            "ExternalName"
+          ],
+          "default": "ClusterIP",
+          "description": "Kubernetes service type."
+        }
+      },
+      "required": ["type"]
     }
   },
   "required": [

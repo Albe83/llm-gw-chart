@@ -1,5 +1,6 @@
 namespaceOverride: ""
 replicaCount: 1
+port: 4000
 
 envConfig: {}
 envSecret: {}
@@ -9,3 +10,6 @@ image:
   tag: v0.0.6
   digest: sha256:517933f26f912ccfdb1dcd5d7279816f92340085a98cbbbfe8f8a099f83ac43
   pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
