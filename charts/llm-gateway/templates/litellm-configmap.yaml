@@ -1,0 +1,12 @@
+{{- if .Values.litellmConfig }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "llm-gateway.fullname" . }}-litellm-config
+  namespace: {{ include "llm-gateway.namespace" . }}
+  labels:
+    {{- include "llm-gateway.labels" . | nindent 4 }}
+data:
+  litellm_config.yaml: |
+{{ toYaml .Values.litellmConfig | nindent 4 }}
+{{- end }}
