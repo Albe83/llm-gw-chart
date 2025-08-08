@@ -1,0 +1,14 @@
+{{- if .Values.envConfig }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "llm-gateway.fullname" . }}-config-env
+  namespace: {{ include "llm-gateway.namespace" . }}
+  labels:
+    {{- include "llm-gateway.labels" . | nindent 4 }}
+data:
+{{- range $key, $value := .Values.envConfig }}
+  {{ $key }}: {{ $value | quote }}
+{{- end }}
+{{- end }}
+

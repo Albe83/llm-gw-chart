@@ -1,0 +1,11 @@
+namespaceOverride: ""
+replicaCount: 1
+
+envConfig: {}
+envSecret: {}
+
+image:
+  repository: albe83/llm-gw
+  tag: v0.0.6
+  digest: sha256:517933f26f912ccfdb1dcd5d7279816f92340085a98cbbbfe8f8a099f83ac43
+  pullPolicy: IfNotPresent

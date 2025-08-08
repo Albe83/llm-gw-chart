@@ -1,0 +1,73 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "namespaceOverride": {
+      "type": "string",
+      "default": "",
+      "description": "Override the release namespace."
+    },
+    "replicaCount": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1,
+      "description": "Number of replicas for the deployment."
+    },
+    "envConfig": {
+      "type": "object",
+      "default": {},
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Plain text environment variables added via ConfigMap."
+    },
+    "envSecret": {
+      "type": "object",
+      "default": {},
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Sensitive environment variables added via Secret."
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "default": "albe83/llm-gw",
+          "description": "Container image repository."
+        },
+        "tag": {
+          "type": "string",
+          "default": "v0.0.6",
+          "description": "Container image tag."
+        },
+        "digest": {
+          "type": "string",
+          "default": "sha256:517933f26f912ccfdb1dcd5d7279816f92340085a98cbbbfe8f8a099f83ac43",
+          "description": "Container image digest."
+        },
+        "pullPolicy": {
+          "type": "string",
+          "enum": [
+            "Always",
+            "IfNotPresent",
+            "Never"
+          ],
+          "default": "IfNotPresent",
+          "description": "Kubernetes image pull policy."
+        }
+      },
+      "required": [
+        "repository",
+        "tag",
+        "digest",
+        "pullPolicy"
+      ]
+    }
+  },
+  "required": [
+    "replicaCount",
+    "image"
+  ]
+}
