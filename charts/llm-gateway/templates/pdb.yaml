@@ -1,0 +1,15 @@
+{{- if .Values.pdb.enabled }}
+{{- $defaultMinAvailable := max (sub (int .Values.replicaCount) 1) 0 -}}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "llm-gateway.fullname" . }}
+  namespace: {{ include "llm-gateway.namespace" . }}
+  labels:
+    {{- include "llm-gateway.labels" . | nindent 4 }}
+spec:
+  minAvailable: {{ .Values.pdb.minAvailable | default $defaultMinAvailable }}
+  selector:
+    matchLabels:
+      {{- include "llm-gateway.selectorLabels" . | nindent 6 }}
+{{- end }}

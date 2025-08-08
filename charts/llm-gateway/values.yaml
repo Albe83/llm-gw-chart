@@ -13,3 +13,8 @@ image:
 service:
   type: ClusterIP
   port: 80
+
+pdb:
+  enabled: true
+  # By default, minAvailable is computed as replicaCount - 1 with a minimum of 0
+  minAvailable: null
