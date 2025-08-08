@@ -11,6 +11,6 @@ spec:
     {{- include "llm-gateway.selectorLabels" . | nindent 4 }}
   ports:
     - name: http
-      port: {{ .Values.envConfig.PORT }}
+      port: {{ .Values.service.port }}
       targetPort: {{ .Values.envConfig.PORT }}
       protocol: TCP
