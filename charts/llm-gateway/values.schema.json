@@ -40,6 +40,12 @@
       },
       "description": "Sensitive environment variables added via Secret."
     },
+    "litellmConfig": {
+      "type": "object",
+      "default": {},
+      "additionalProperties": true,
+      "description": "Content of the litellm configuration file mounted at /litellm_config.yaml."
+    },
     "image": {
       "type": "object",
       "properties": {

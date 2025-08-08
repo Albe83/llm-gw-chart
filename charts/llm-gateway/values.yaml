@@ -4,6 +4,8 @@ replicaCount: 1
 envConfig:
   PORT: 4000
 envSecret: {}
+# Content of litellm_config.yaml mounted into the container.
+litellmConfig: {}
 
 image:
   repository: albe83/llm-gw

@@ -14,13 +14,16 @@ spec:
     metadata:
       labels:
         {{- include "llm-gateway.selectorLabels" . | nindent 8 }}
-      {{- if or .Values.envConfig .Values.envSecret }}
+      {{- if or (or .Values.envConfig .Values.envSecret) .Values.litellmConfig }}
       annotations:
         {{- if .Values.envConfig }}
         checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
         {{- end }}
         {{- if .Values.envSecret }}
         checksum/secret: {{ include (print $.Template.BasePath "/secret.yaml") . | sha256sum }}
+        {{- end }}
+        {{- if .Values.litellmConfig }}
+        checksum/litellm-config: {{ include (print $.Template.BasePath "/litellm-configmap.yaml") . | sha256sum }}
         {{- end }}
       {{- end }}
     spec:
@@ -43,3 +46,15 @@ spec:
             - name: http
               containerPort: {{ .Values.envConfig.PORT }}
               protocol: TCP
+          {{- if .Values.litellmConfig }}
+          volumeMounts:
+            - name: litellm-config
+              mountPath: /litellm_config.yaml
+              subPath: litellm_config.yaml
+          {{- end }}
+      {{- if .Values.litellmConfig }}
+      volumes:
+        - name: litellm-config
+          configMap:
+            name: {{ include "llm-gateway.fullname" . }}-litellm-config
+      {{- end }}
