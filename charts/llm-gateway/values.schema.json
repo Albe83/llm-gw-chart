@@ -9,9 +9,9 @@
     },
     "replicaCount": {
       "type": "integer",
-      "minimum": 1,
+      "minimum": 0,
       "default": 1,
-      "description": "Number of replicas for the deployment."
+      "description": "Number of replicas for the deployment. Set to 0 to scale to zero pods."
     },
     "envConfig": {
       "type": "object",
