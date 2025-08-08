@@ -99,6 +99,23 @@
         }
       },
       "required": ["type", "port"]
+    },
+    "pdb": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Create a PodDisruptionBudget for the deployment."
+        },
+        "minAvailable": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "default": null,
+          "description": "Minimum number of pods that must remain available. Defaults to replicaCount - 1 with a minimum of 0."
+        }
+      },
+      "required": ["enabled"]
     }
   },
   "required": [
