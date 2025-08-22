@@ -51,7 +51,7 @@
       "properties": {
         "repository": {
           "type": "string",
-          "default": "albe83/llm-gw",
+          "default": "albe83/llm-gateway",
           "description": "Container image repository."
         },
         "tag": {
